@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMMOSION</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 1rem 0;
+      font-size: 2.5rem;
+      color: #f8f8f8;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: #333;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tab-button.active {
+      background-color: #555;
+    }
+
+    .tab-content {
+      display: none;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .typing-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .text-display {
+      font-size: 1.5rem;
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      width: 100%;
+      min-height: 120px;
+      white-space: pre-wrap;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .word {
+      display: inline;
+    }
+
+    .correct {
+      color: #4caf50;
+    }
+
+    .incorrect {
+      color: #f44336;
+    }
+
+    .current {
+      text-decoration: underline;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.2rem;
+      background: #333;
+      color: #fff;
+      outline: none;
+      resize: none;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-group button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      background-color: #666;
+    }
+
+    #categories, #subCategories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem auto;
+    }
+
+    .column, .sub-column {
+      background: #2a2a2a;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #eee;
+      cursor: pointer;
+    }
+    .tagline {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #ccc;
+  margin-top: -10px; /* adjust spacing as needed */
+  margin-bottom: 20px;
+  font-style: italic;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  .tab-button, .btn-group button, .column, .sub-column {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  margin: 5px 0;
+  border-radius: 20px;
+  
+}
+
+}
+
+  </style>
+</head>
+<body>
+  <h1>IMMOSION</h1>
+  <p class="tagline">Where emotions meet the keyboard. Feel it. Type it. Heal it.</p>
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab(event, 'emotionTab')">Emotion Typing</button>
+  </div>
+
+  <div class="tab-content active" id="emotionTab">
+    <div class="typing-container">
+      <div class="text-display" id="paraBox">Select an emotion and subcategory to get started!</div>
+      <textarea id="userInput" placeholder="Type here..."></textarea>
+      <div class="btn-group">
+        <button onclick="newParagraph()">New Paragraph</button>
+        <button onclick="clearText()">Clear</button>
+      </div>
+      <div id="categories"></div>
+      <div id="subCategories"></div>
+    </div>
+  </div>
+
+  <script>
+    const paragraphs = {
+      Sad: {
+        Upset: ["It's okay to feel upset. Being upset doesn’t mean you’re weak : it means you cared. Your emotions are valid, and this moment doesn’t define your whole story. Take it one breath at a time. Small steps toward peace are still progress.", "Brighter days are waiting for you.Sometimes, the people or situations that upset us are reminders of our boundaries. It’s okay to protect your peace. Reflect, learn, and give yourself permission to let go of what hurts.","Feeling upset is a natural response to tough moments. Instead of bottling it up, allow yourself to feel it and breathe through the discomfort. Remember, emotions pass like waves. Talk to someone you trust or write it out—you don’t have to carry the weight alone. Even the worst storms calm down eventually.","You’re allowed to take a break from the noise. Disconnect for a moment, breathe deeply, and ground yourself. Upset feelings often fade when we give ourselves the space to feel and heal.","Not every emotion needs a solution right away. Sit with it, let it speak, then gently move forward. You are growing, even through the heaviness.","The heaviness in your chest will ease. You’ve overcome harder days, and this one too shall pass. You’re allowed to cry, to pause, and to begin again."],
+        FoughtWithFriend: ["Friendships go through tough times. It hurts to fight with someone you care about. It’s okay to feel angry, confused, or even guilty. Give yourself space to process. Relationships are complex, but time and honesty can heal more than you think.", "You're strong enough to get through it. Sometimes, arguments happen because we expect more from the people we love. It doesn’t make your feelings wrong : it just means you value that connection. Reflect on what matters most before deciding your next step.","Friendships are not always smooth—they're made of real people with real emotions. A fight doesn’t erase all the good memories. Give it time, and maybe, a chance to grow stronger after the storm.","Misunderstandings can break even the best bonds, but open-hearted conversations can mend them. If your friendship is worth it, silence doesn’t have to be the end : sometimes, it’s just a pause.","Fighting with a friend can feel like losing a part of yourself. But healing is possible : through honesty, listening, and forgiveness. If it matters to you, don't be afraid to take the first step."],
+        Lonely: ["You're not truly alone.", "People care about you.","Loneliness can feel like a heavy shadow, but remember : you're not invisible. Even when it feels like no one notices, your presence matters.","Being alone doesn’t mean you are unworthy of love or friendship. It’s okay to feel this way, but don’t forget that the world is full of people who would care if they knew your story.","The feeling of being lonely can creep in even when surrounded by others. It’s a sign that you crave genuine connection, not just company.","This moment of loneliness doesn’t define your whole story. Sometimes, solitude is where we rediscover ourselves.","You are not alone in feeling alone. Reach out, even if it’s just a small step : connection often begins with a single word.", "It’s okay to feel left out sometimes, but it doesn't mean you’re forgotten. Your value isn’t measured by how many people are around you.","Loneliness isn’t weakness—it’s a reminder of your capacity to care and connect. Hold on to that strength."]
+      },
+      Happy: {
+        Grateful: ["Gratitude is powerful. Gratitude is not just about saying 'thank you' for the good things in life—it’s a way of seeing the world that changes how we experience everything around us. When we truly embrace gratitude, even the smallest moments : like the warmth of the morning sun on your skin or the smile of a stranger : become sources of joy. It encourages us to slow down, to notice the gifts hidden in the everyday, and to find peace in what we already have rather than longing for what we don’t. This mindset not only uplifts our spirits but also builds resilience against life’s challenges, reminding us that even amidst difficulties, there is always something to be thankful for.", "Appreciate your journey. Practicing gratitude can transform our lives in profound ways. It rewires our brain to focus on positivity and abundance instead of scarcity and lack. When we make it a habit to reflect on what we appreciate : whether it’s the love of family, the comfort of a cozy home, or the chance to learn and grow : we cultivate a deep sense of contentment and happiness. Gratitude helps us realize that joy is not dependent on external circumstances but grows from within. It’s a gentle reminder that life, in all its complexity, is rich with blessings waiting to be acknowledged, and that by appreciating what we have, we open ourselves to even more goodness."," Sometimes life moves so fast that we forget to pause and appreciate the present moment. Gratitude brings us back to now, grounding us in the here and the now. It helps us see the extraordinary in the ordinary : a cup of coffee, a kind word, a quiet evening at home. These simple things, often overlooked, are the foundation of a joyful and fulfilling life. By embracing gratitude, we shift our perspective from what’s missing to what’s plentiful. This shift not only brightens our mood but also strengthens our relationships, as we become more aware and appreciative of the people who support and love us."," Gratitude is like a muscle that needs regular exercise. The more we practice it, the stronger and more natural it becomes. When we take time each day to consciously acknowledge the good around us : whether it’s a breath of fresh air, a lesson learned, or an act of kindness received : we nourish our emotional well-being. This habit of thankfulness can help reduce stress, increase happiness, and deepen our connection to the world and to others. In this way, gratitude is both a gift we give ourselves and a light we share with those around us."],
+        Excited: ["Embrace the excitement! You're on the edge of something great. Excitement is not just about looking forward : it’s about the powerful energy that moves through us when we embrace possibility. It reminds us that life is a series of moments to be cherished, and that each new experience is a chance to grow and learn. When you are excited, you open yourself up to creativity, innovation, and connection. This feeling encourages us to push beyond our comfort zones and explore what lies beyond. The more we cultivate excitement, the more we invite joy and fulfillment into our lives, turning dreams into realities one step at a time.","Excitement is a beautiful surge of energy that fills us with hope and possibility. It’s the feeling that wakes us up early in the morning and keeps us buzzing with anticipation throughout the day. When you’re excited, the future feels bright and full of opportunity : like every moment holds the promise of something wonderful. This emotion fuels creativity and motivation, pushing us to take steps toward our dreams even when the path seems uncertain. Embracing excitement allows us to live fully in the present while looking forward to what’s next with an open heart and a joyful spirit.","There’s a unique magic in excitement : it makes our hearts race and our minds buzz with ideas and possibilities. It’s the spark that ignites our passions and helps us overcome fear or doubt. When we allow ourselves to feel excited, we tap into a powerful source of optimism that can carry us through challenges and setbacks. This joyful anticipation encourages us to take risks, try new things, and embrace change as a thrilling adventure. In moments of excitement, life feels vibrant and alive, and we are reminded that there is so much to explore and achieve.","Feeling excited can transform ordinary moments into extraordinary ones. It invites us to celebrate progress, no matter how small, and to savor the journey as much as the destination. Excitement creates a sense of connection with our goals and values, aligning our actions with what truly matters to us. It’s a signal that we are engaged and passionate about life, and it encourages us to spread that enthusiasm to others. By welcoming excitement, we invite joy and positivity into our daily routine, making each day feel a little more special and full of potential."]
+      },
+      Anxious: {
+        Nervous: ["Take a deep breath. Nervousness can sometimes feel like butterflies fluttering in your stomach, reminding you that you’re about to do something meaningful. It’s okay to feel this way—it means you’re alive and engaged. Try to breathe deeply and ground yourself by noticing the sensations around you—the sounds, sights, and feelings of the present moment. This helps calm your mind and bring clarity. Trust that you have prepared as best as you can, and no matter what happens, every experience is a chance to learn and grow.", "You're doing your best. Being nervous means you’re pushing your boundaries, which is how growth happens. It’s easy to want to avoid those jittery feelings, but they can be your allies, sharpening your senses and motivating you to do your best. Accepting nervousness as part of the process helps lessen its hold over you. The more you face nervous moments, the more confident you become. Each time you manage those nerves, you build resilience and remind yourself that you are capable of handling whatever comes your way.","Feeling nervous is a natural part of facing new or important situations. It shows that you care about what’s ahead and that you want to do your best. While nerves can feel uncomfortable, they also bring energy and alertness that can help you focus and prepare. Instead of trying to push the nervousness away, try to accept it as a signal that you’re stepping outside your comfort zone. Remember, every person experiences nerves at some point, and often, those feelings fade once you get started and find your rhythm.","When nerves arise, it’s often because you’re facing uncertainty, and that’s perfectly normal. Instead of letting nervous thoughts spiral, try to focus on what you can control. Preparing well, visualizing success, or even talking through your feelings with someone you trust can make a big difference. Remember, nervous energy is temporary and often transforms into excitement once you start. Give yourself credit for showing up and trying, because that courage itself is a powerful achievement."],
+        Overthinking: ["Overthinking is like your mind getting caught in a loop, replaying the same worries and doubts over and over. It’s easy to feel trapped when your thoughts race and multiply, making problems seem bigger than they really are. But remember, not every thought deserves your attention : sometimes, your mind is just trying to prepare for the worst. Try to gently remind yourself to take breaks, breathe deeply, and focus on what you can control right now. Letting go doesn’t mean ignoring your feelings, but rather choosing peace over unnecessary stress.","Not every thought needs attention. When you find yourself overthinking, it can feel exhausting and overwhelming, as if you’re stuck in a maze of ‘what ifs’ and possibilities. This habit can keep you from enjoying the present moment and make decisions feel harder than they need to be. Try to practice self-compassion and recognize that it’s okay not to have all the answers immediately. Techniques like journaling, mindfulness, or talking to someone you trust can help you untangle your thoughts and bring calm clarity back to your mind.", "Give yourself a break. Overthinking often comes from a desire to be prepared and avoid mistakes, but it can end up creating more worry than solutions. When you catch yourself spiraling, try to pause and ask if your thoughts are helpful or just repetitive noise. Grounding yourself by focusing on your senses—the feel of the ground beneath your feet, the sounds around you—can pull you back to the present and ease mental clutter. Remember, you don’t have to figure everything out at once; sometimes, it’s enough just to be here, now.","It’s natural to want to analyze situations carefully, but overthinking takes this to an extreme where it hinders your peace and progress. Instead of trying to control every outcome, try embracing uncertainty as a part of life. Trust that you have the inner strength to handle whatever comes your way, even if you don’t know all the details yet. Being kind to yourself and allowing space for rest helps quiet the mind and gives you the freedom to think clearly and act with confidence."]
+      }
+    };
+
+    let currentCategory = '', currentSubCategory = '', currentParagraph = '';
+
+    function loadCategories() {
+      const categoryContainer = document.getElementById('categories');
+      categoryContainer.innerHTML = '';
+      Object.keys(paragraphs).forEach(category => {
+        const div = document.createElement('div');
+        div.className = 'column';
+        div.innerText = category;
+        div.onclick = () => loadSubCategories(category);
+        categoryContainer.appendChild(div);
+      });
+    }
+
+    function loadSubCategories(category) {
+      currentCategory = category;
+      const subCategoryContainer = document.getElementById('subCategories');
+      subCategoryContainer.innerHTML = '';
+      Object.keys(paragraphs[category]).forEach(sub => {
+        const div = document.createElement('div');
+        div.className = 'sub-column';
+        div.innerText = sub;
+        div.onclick = () => showParagraph(category, sub);
+        subCategoryContainer.appendChild(div);
+      });
+    }
+
+    function showParagraph(category, sub) {
+      currentCategory = category;
+      currentSubCategory = sub;
+      const paraList = paragraphs[category][sub];
+      currentParagraph = paraList[Math.floor(Math.random() * paraList.length)];
+      displayParagraph();
+      document.getElementById('userInput').value = '';
+    }
+
+    function displayParagraph() {
+      const paraBox = document.getElementById('paraBox');
+      paraBox.innerHTML = '';
+      currentParagraph.split('').forEach((char, index) => {
+        const span = document.createElement('span');
+        span.innerText = char;
+        span.className = 'word';
+        paraBox.appendChild(span);
+      });
+    }
+
+    function newParagraph() {
+      if (currentCategory && currentSubCategory) showParagraph(currentCategory, currentSubCategory);
+    }
+
+    function clearText() {
+      document.getElementById('userInput').value = '';
+      displayParagraph();
+    }
+
+    function switchTab(event, tabId) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    document.getElementById('userInput').addEventListener('input', () => {
+      const typed = document.getElementById('userInput').value;
+      const spans = document.querySelectorAll('#paraBox span');
+      spans.forEach((span, idx) => {
+        const char = typed[idx];
+        if (char == null) {
+          span.className = 'word';
+        } else if (char === span.innerText) {
+          span.className = 'word correct';
+        } else {
+          span.className = 'word incorrect';
+        }
+      });
+      if (typed === currentParagraph) {
+        setTimeout(() => newParagraph(), 500);
+      }
+    });
+
+    loadCategories();
+  </script>
+</body>
+</html>
